@@ -1,0 +1,90 @@
+#########################
+### CIV CONFIGURATION ###
+#########################
+
+# Add git branch to PS1
+parse_git_branch() {
+    branch=$(git branch 2>/dev/null | grep '*' | sed 's/* //')
+    if [ ! -z "$branch" ]; then
+        # echo -e " \033[01;31m($branch)\033[00m" # red
+        # echo -e " \033[01;33m($branch)\033[00m" # yellow
+        # echo -e " \033[01;35m($branch)\033[00m" # magenta
+        echo -e " \033[01;36m($branch)\033[00m" # cyan
+    fi
+}
+
+color_prompt=yes
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(parse_git_branch)\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+alias ll='ls -lah'
+#alias l='ls -lah'
+alias 'cd..'='cd ..'
+alias tmux='tmux -2'
+
+civ-df () {
+    df -h | head -n 1
+    df -h | head -3 | tail -n 1 
+    df -h | head -20 | tail -n 1 
+    df -h | head -17 | tail -n 1  
+}
+
+# make bash autocomplete write every suggestion in a separate line
+bind 'set completion-display-width 0'
+
+PATH=$PATH:~/.local/bin
+
+# use vim as editor (git and other apps)
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+canup () 
+{ 
+    if [ $# -lt 1 ]; then
+        echo "syntax:";
+        echo "  $ canup <interface>";
+        echo "  $ canup <interface> <bitrate>";
+        echo "    (e.g. canup can0)";
+    fi;
+    if [ $# -eq 1 ]; then
+        echo "sudo ip link set $1 type can bitrate 250000";
+        echo "sudo ip link set up $1";
+        sudo ip link set $1 type can bitrate 250000;
+        sudo ip link set up $1;
+    fi;
+    if [ $# -eq 2 ]; then
+        echo "sudo ip link set $1 type can bitrate $2";
+        echo "sudo ip link set up $1";
+        sudo ip link set $1 type can bitrate $2;
+        sudo ip link set up $1;
+    fi
+}
+
+
+candown() {
+    echo "sudo ip link set down $1"
+    sudo ip link set down $1
+}
+
+
+sss() {
+    echo "sourcing install/local_setup.bash"
+    source install/local_setup.bash
+}
+
+disp() {
+    echo "export DISPLAY=:10"
+    export DISPLAY=:10
+}
+
+c-test() {
+    echo "cyclictest --affinity=0,1,2,3 --threads=4 --mlockall --priority=80 --interval=200 --distance=0"
+    cyclictest --affinity=0,1,2,3 --threads=4 --mlockall --priority=80 --interval=200 --distance=0
+}
+
+eval "$(zoxide init bash)"
+
+

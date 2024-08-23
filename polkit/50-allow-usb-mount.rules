@@ -1,0 +1,21 @@
+// Allow all users to mount USB storage
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.udisks2.filesystem-mount" ||
+        action.id == "org.freedesktop.udisks2.filesystem-mount-other-seat" ||
+        action.id == "org.freedesktop.udisks2.filesystem-mount-system") {
+        if (subject.isInGroup("users")) {
+            return polkit.Result.YES;
+        }
+    }
+});
+
+// Allow all users to eject USB storage
+polkit.addRule(function(action, subject) {
+    if (action.id == "org.freedesktop.udisks2.eject-media" ||
+        action.id == "org.freedesktop.udisks2.eject-media-other-seat" ||
+        action.id == "org.freedesktop.udisks2.eject-media-system") {
+        if (subject.isInGroup("users")) {
+            return polkit.Result.YES;
+        }
+    }
+});
