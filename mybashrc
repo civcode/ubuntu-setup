@@ -76,8 +76,10 @@ disp() {
 }
 
 c-test() {
-    echo "cyclictest --affinity=0,1,2,3 --threads=4 --mlockall --priority=80 --interval=200 --distance=0"
-    cyclictest --affinity=0,1,2,3 --threads=4 --mlockall --priority=80 --interval=200 --distance=0
+    num_cpus=$(nproc)
+    cpu_list=$(seq -s, 0 $((num_cpus - 1)))
+    echo "cyclictest --affinity=${cpu_list} --threads=$num_cpus --mlockall --priority=80 --interval=200 --distance=0"
+    cyclictest --affinity=${cpu_list} --threads=$num_cpus --mlockall --priority=80 --interval=200 --distance=0
 }
 
 eval "$(zoxide init bash)"
