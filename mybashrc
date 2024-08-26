@@ -20,8 +20,8 @@ else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 
+alias l='ls -1'
 alias ll='ls -lah'
-#alias l='ls -lah'
 alias 'cd..'='cd ..'
 alias tmux='tmux -2'
 
