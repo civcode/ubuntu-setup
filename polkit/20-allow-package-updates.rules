@@ -1,0 +1,19 @@
+// Allow all users to update package cache
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("users") && 
+       (action.id == "org.freedesktop.packagekit.system-sources-refresh" ||
+        action.id == "org.freedesktop.packagekit.refresh-cache" ||
+        action.id == "org.debian.apt.update-cache" ||
+        action.id == "org.freedesktop.packagekit.system-update")) {
+        return polkit.Result.YES;
+    }
+});
+
+// Allow all users to upgrade packages
+polkit.addRule(function(action, subject) {
+    if (subject.isInGroup("users") &&
+       (action.id == "org.freedesktop.packagekit.package-install" ||
+        action.id == "org.debian.apt.upgrade-packages")) {
+        return polkit.Result.YES;
+    }
+});
