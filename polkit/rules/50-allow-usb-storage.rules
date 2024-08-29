@@ -3,7 +3,7 @@ polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.udisks2.filesystem-mount" ||
         action.id == "org.freedesktop.udisks2.filesystem-mount-other-seat" ||
         action.id == "org.freedesktop.udisks2.filesystem-mount-system") {
-        if (subject.active) {
+        if (subject.isInGroup("users") && subject.active) {    
             return polkit.Result.YES;
         } else {
             return polkit.Result.NO;
@@ -16,7 +16,7 @@ polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.udisks2.eject-media" ||
         action.id == "org.freedesktop.udisks2.eject-media-other-seat" ||
         action.id == "org.freedesktop.udisks2.eject-media-system") {
-        if (subject.active) {
+        if (subject.isInGroup("users") && subject.active) {    
             return polkit.Result.YES;
         } else {
             return polkit.Result.NO;
