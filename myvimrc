@@ -38,3 +38,8 @@ syntax on
 
 " Fix colors in tmux "
 set background=dark
+
+" Remap the register access key from " to ,
+noremap , "
+vnoremap , "
+cnoremap , "
