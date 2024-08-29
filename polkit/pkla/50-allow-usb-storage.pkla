@@ -1,0 +1,13 @@
+[Allow all users to mount USB storage]
+Identity=unix-user:*
+Action=org.freedesktop.udisks2.filesystem-mount;org.freedesktop.udisks2.filesystem-mount-other-seat;org.freedesktop.udisks2.filesystem-mount-system
+ResultActive=yes
+ResultAny=yes
+ResultInactive=no
+
+[Allow all users to eject USB storage]
+Identity=unix-user:*
+Action=org.freedesktop.udisks2.eject-media;org.freedesktop.udisks2.eject-media-other-seat;org.freedesktop.udisks2.eject-media-system
+ResultActive=yes
+ResultAny=yes
+ResultInactive=no

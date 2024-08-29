@@ -5,7 +5,11 @@ polkit.addRule(function(action, subject) {
         action.id == "org.freedesktop.packagekit.refresh-cache" ||
         action.id == "org.debian.apt.update-cache" ||
         action.id == "org.freedesktop.packagekit.system-update")) {
-        return polkit.Result.YES;
+        if (subject.active) {
+            return polkit.Result.YES;
+        } else {
+            return polkit.Result.NO;
+        }
     }
 });
 
@@ -14,6 +18,12 @@ polkit.addRule(function(action, subject) {
     if (subject.isInGroup("users") &&
        (action.id == "org.freedesktop.packagekit.package-install" ||
         action.id == "org.debian.apt.upgrade-packages")) {
-        return polkit.Result.YES;
+        if (subject.active) {
+            return polkit.Result.YES;
+        } else {
+            return polkit.Result.NO;
+        }
     }
 });
+
+

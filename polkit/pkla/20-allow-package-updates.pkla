@@ -1,0 +1,13 @@
+[Allow all users to update package cache]
+Identity=unix-user:*
+Action=org.freedesktop.packagekit.system-sources-refresh;org.freedesktop.packagekit.refresh-cache;org.debian.apt.update-cache;org.freedesktop.packagekit.system-update
+ResultActive=yes
+ResultAny=yes
+ResultInactive=no
+
+[Allow all users to upgrade packages]
+Identity=unix-user:*
+Action=org.freedesktop.packagekit.package-install;org.debian.apt.upgrade-packages
+ResultActive=yes
+ResultAny=yes
+ResultInactive=no
