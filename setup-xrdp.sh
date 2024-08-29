@@ -58,6 +58,7 @@ if [ "$LOGOUT_NEEDED" = true ]; then
     echo "Please log out to activate new group memberships"
     echo "sudo loginctl kill-user $USER"
     echo "After logging out, you can connect to the machine via RDP"
+else
+    echo "You can connect to the machine via RDP"
 fi
 
-echo "You can connect to the machine via RDP"
