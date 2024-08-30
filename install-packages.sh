@@ -5,6 +5,7 @@ sudo apt-get update && sudo apt-get install -y \
     build-essential \
     cmake \
     cmake-curses-gui \
+    dos2unix \
     git \
     htop \
     intel-gpu-tools \
