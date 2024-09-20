@@ -7,7 +7,7 @@ ResultInactive=no
 
 [Allow all users to upgrade packages]
 Identity=unix-user:*
-Action=org.freedesktop.packagekit.package-install;org.debian.apt.upgrade-packages
+Action=org.freedesktop.packagekit.package-install;org.debian.apt.upgrade-packages;org.debian.apt.install-or-remove-packages
 ResultActive=yes
 ResultAny=yes
 ResultInactive=no
