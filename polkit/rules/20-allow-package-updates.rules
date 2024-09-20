@@ -15,7 +15,8 @@ polkit.addRule(function(action, subject) {
 // Allow all users to upgrade packages
 polkit.addRule(function(action, subject) {
     if  (action.id == "org.freedesktop.packagekit.package-install" ||
-        action.id == "org.debian.apt.upgrade-packages") {
+        action.id == "org.debian.apt.upgrade-packages" ||
+        action.id = "org.debian.apt.install-or-remove-packages") {
         if (subject.isInGroup("users") && subject.active) {    
             return polkit.Result.YES;
         } else {
