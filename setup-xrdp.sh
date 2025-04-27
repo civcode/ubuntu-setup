@@ -11,8 +11,8 @@ else
     echo "xrdp is already installed"
 fi
 
-# Check is user is in group ssl-cert
-# If not, add user to group ssl-cert
+# Check is xrdp user is in group ssl-cert
+# If not, add xrdp user to group ssl-cert
 LOGOUT_NEEDED=false
 if ! id xrdp | grep -q "ssl-cert"; then
     echo "Adding xrdp user to group ssl-cert"
