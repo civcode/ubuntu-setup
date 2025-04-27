@@ -14,12 +14,12 @@ fi
 # Check is user is in group ssl-cert
 # If not, add user to group ssl-cert
 LOGOUT_NEEDED=false
-if ! groups | grep -q ssl-cert; then
-    echo "Adding user to group ssl-cert"
-    sudo usermod -a -G ssl-cert $USER
+if ! id xrdp | grep -q "ssl-cert"; then
+    echo "Adding xrdp user to group ssl-cert"
+    sudo usermod -a -G ssl-cert xrdp
     LOGOUT_NEEDED=true
 else
-    echo "User is already in group ssl-cert"
+    echo "xrdp user is already in ssl-cert group"
 fi
 
 # Check if user is in group render
