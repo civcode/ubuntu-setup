@@ -84,4 +84,6 @@ c-test() {
 
 eval "$(zoxide init bash)"
 
+source /usr/share/powerline/bindings/bash/powerline.sh
+
 
